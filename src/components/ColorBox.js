@@ -1,12 +1,25 @@
+import React, { useState } from 'react'
 import styles from './ColorBox.module.scss'
-const ColorBox = (props) => {
-
-    const styleInline = {
-        backgroundColor: props.bgcolor
-    }
+const getRandomColor = () => {
+    const colors = ['deeppink', 'green', 'yellow', 'black', 'blue'];
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+}
+  
+const ColorBox = () => {
+    const [color, setColor] = useState(() => {
+        const initColor = localStorage.getItem('box-color') || 'deeppink';
+        console.log(initColor);
+        return initColor;
+    }); 
+    const handleBoxClick = () => {
+        const colorActive = getRandomColor();
+        localStorage.setItem('box-color', colorActive);
+        return setColor(colorActive);
+    }  
 
     return (
-        <div onClick={ props.clicked } className={styles.box} style={styleInline}>
+        <div className={styles.box} style={{ backgroundColor: color}} onClick={handleBoxClick}>
             <h1>Box</h1>
         </div>
     )
