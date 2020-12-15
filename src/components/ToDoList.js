@@ -26,7 +26,7 @@ function ToDoList(props) {
 
     const elements = todos.map((todo, index) => {
         return <li
-            onClick={handleClick(todo)}
+            onClick={()=> handleClick(todo)}
             key={index}>
             {todo.name}
         </li>

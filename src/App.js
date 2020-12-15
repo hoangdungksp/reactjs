@@ -24,9 +24,13 @@ function App() {
   const [todoList, setTodoList] = useState(todoListInit);
 
   const handleTodoClick = (todo) => {
-     console.log(todo);
-    // const newTodoList = todoList.splice(event.target.id, 1);
-    // return setTodo(newTodoList);
+    const index = todoList.findIndex(x => x.id === todo.id)
+    if (index < 0)
+        return;
+    const newTodoList = [...todoList];
+      newTodoList.splice(index, 1);
+    setTodoList(newTodoList);  
+
   }
 
   return (
